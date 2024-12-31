@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.x
+    commands:
+      - echo Installing Terraform...
+      - apt-get update -y
+      - apt-get install -y unzip curl
+      - curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo tee /etc/apt/trusted.gpg.d/hashicorp.asc
+      - sudo apt-get update && sudo apt-get install terraform
+  build:
+    commands:
+      - echo Running Terraform commands...
+      - cd terraform
+      - terraform init
+      - terraform plan
+      - terraform apply -auto-approve
+artifacts:
+  files:
+    - '**/*'
+  discard-paths: yes
