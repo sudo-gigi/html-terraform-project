@@ -6,31 +6,31 @@ provider "aws" {
 }
 
 # Resource to create a security group that allows SSH (port 22) and HTTP (port 80) access
-resource "aws_security_group" "web_server_sg" {
-  name        = "web-server-sg"
-  description = "Allow SSH and HTTP access"
+#resource "aws_security_group" "web_server_sg" {
+#  name        = "web-server-sg"
+#  description = "Allow SSH and HTTP access"
 
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] # Allows SSH from anywhere
-  }
+#  ingress {
+#    from_port   = 22
+#    to_port     = 22
+#    protocol    = "tcp"
+#    cidr_blocks = ["0.0.0.0/0"] # Allows SSH from anywhere
+#  }
 
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] # Allows HTTP from anywhere
-  }
+#  ingress {
+#    from_port   = 80
+#    to_port     = 80
+#    protocol    = "tcp"
+#    cidr_blocks = ["0.0.0.0/0"] # Allows HTTP from anywhere
+#  }
 
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"] # Allows all outbound traffic
-  }
-}
+#  egress {
+#    from_port   = 0
+#    to_port     = 0
+#    protocol    = "-1"
+#    cidr_blocks = ["0.0.0.0/0"] # Allows all outbound traffic
+#  }
+#}
 # resource "aws_dynamodb_table" "terraform_lock" {
  # name         = "terraform-gg"
  # hash_key     = "LockID"
@@ -77,20 +77,20 @@ resource "aws_instance" "web_server" {
                       p {
                           font-size: 1.2rem;
                       }
-                      .witty-text {
-                          margin-top: 30px;
-                          font-style: italic;
-                          font-weight: bold;
-                          color: #ffffff;
-                          text-shadow: 1px 1px 2px #000000;
-                      }
+                      #.witty-text {
+                      #    margin-top: 30px;
+                      #    font-style: italic;
+                      #    font-weight: bold;
+                      #    color: #ffffff;
+                      #    text-shadow: 1px 1px 2px #000000;
+                     # }
                   </style>
               </head>
               <body>
                   <h1>Hi, I'm Glory Eziani 👩‍💻</h1>
                   <p>Welcome to my landing page powered by Terraform, AWS CodePipeline, and EC2 🚀</p>
                   <p>I'm passionate about Cloud Computing and DevOps 🌥️.</p>
-                  <p class="witty-text">Detect any changes? Yup, you guessed right! 🚨</p>
+                  #<p class="witty-text">Detect any changes? Yup, you guessed right! 🚨</p>
               </body>
               </html>
               HTML
