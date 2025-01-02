@@ -85,7 +85,7 @@ resource "aws_instance" "web_server" {
                           color: #ffffff;
                           text-shadow: 1px 1px 2px #000000;
                       }
-                      <!--
+                      <--
                   </style>
               </head>
               <body>
