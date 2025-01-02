@@ -47,7 +47,7 @@ resource "aws_instance" "web_server" {
   instance_type = "t2.micro"
 
   # Attach the security group to the EC2 instance
-  security_groups = [web-server-sg]
+  security_groups = [aws_security_group.web_server_sg.web-server-sg]
 
   # Attach the HTML directory as user data
   user_data = <<-EOF
