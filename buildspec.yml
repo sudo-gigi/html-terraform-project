@@ -16,12 +16,9 @@ phases:
     commands:
       - echo Running Terraform commands...
       - cd terraform
-      - terraform init -backend-config="bucket=terraform-bucket-gg" \
-                       -backend-config="key=terraform.tfstate" \
-                       -backend-config="region=us-east-1" \
-                       -backend-config="dynamodb_table=terraform-gg"
+      - terraform init
       - terraform plan 
-      - terraform apply -auto-approve
+      - terraform apply -auto-approve 
 artifacts:
   files:
     - '**/*'
