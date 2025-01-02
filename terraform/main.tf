@@ -6,31 +6,31 @@ provider "aws" {
 }
 
 # Resource to create a security group that allows SSH (port 22) and HTTP (port 80) access
-#resource "aws_security_group" "web_server_sg" {
-#  name        = "web-server-sg"
-#  description = "Allow SSH and HTTP access"
+resource "aws_security_group" "web_server_sg" {
+  name        = "web-server-sg"
+  description = "Allow SSH and HTTP access"
 
-#  ingress {
-#    from_port   = 22
-#    to_port     = 22
-#    protocol    = "tcp"
-#    cidr_blocks = ["0.0.0.0/0"] # Allows SSH from anywhere
-#  }
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"] # Allows SSH from anywhere
+  }
 
-#  ingress {
-#    from_port   = 80
-#    to_port     = 80
-#    protocol    = "tcp"
-#    cidr_blocks = ["0.0.0.0/0"] # Allows HTTP from anywhere
-#  }
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"] # Allows HTTP from anywhere
+  }
 
-#  egress {
-#    from_port   = 0
-#    to_port     = 0
-#    protocol    = "-1"
-#    cidr_blocks = ["0.0.0.0/0"] # Allows all outbound traffic
-#  }
-#}
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"] # Allows all outbound traffic
+  }
+}
 # resource "aws_dynamodb_table" "terraform_lock" {
  # name         = "terraform-gg"
  # hash_key     = "LockID"
@@ -47,8 +47,8 @@ resource "aws_instance" "web_server" {
   instance_type = "t2.micro"
 
   # Attach the security group to the EC2 instance
-  security_groups = [aws_security_group.web_server_sg]
-  name = "web-server-sg"
+  security_groups = [aws_security_group.web_server_sg.name]
+  
 
   # Attach the HTML directory as user data
   user_data = <<-EOF
