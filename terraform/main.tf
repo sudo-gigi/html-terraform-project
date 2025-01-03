@@ -48,59 +48,29 @@ resource "aws_instance" "web_server" {
 
   # Attach the security group to the EC2 instance
   security_groups = [aws_security_group.web_server_sg.name]
-  
 
-  # Attach the HTML directory as user data
+  # Install and configure Nginx via user data
   user_data = <<-EOF
               #!/bin/bash
               sudo apt update && sudo apt upgrade -y
               sudo apt install nginx -y
-
-              echo "Deploying the landing page"
-              cat <<-HTML > /var/www/html/index.html
-              <!DOCTYPE html>
-              <html lang="en">
-              <head>
-                  <meta charset="UTF-8">
-                  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                  <title>Glory Eziani</title>
-                  <style>
-                      body {
-                          font-family: Arial, sans-serif;
-                          text-align: center;
-                          padding: 50px;
-                          background: linear-gradient(to right, #d291bc, #957dad);
-                          color: #ffffff;
-                      }
-                      h1 {
-                          font-size: 2.5rem;
-                      }
-                      p {
-                          font-size: 1.2rem;
-                      }
-                      .witty-text {
-                          margin-top: 30px;
-                          font-style: italic;
-                          font-weight: bold;
-                          color: #ffffff;
-                          text-shadow: 1px 1px 2px #000000;
-                      }
-                  </style>
-              </head>
-              <body>
-                  <h1>Hi, I'm Glory Eziani 👩‍💻</h1>
-                  <p>Welcome to my landing page powered by Terraform, AWS CodePipeline, and EC2 🚀</p>
-                  <p>I'm passionate about Cloud Computing and DevOps 🌥️.</p>
-                  <p class="witty-text">Detect any changes? Yup, you guessed right! 🚨</p>
-              </body>
-              </html>
-              HTML
               sudo systemctl start nginx
               sudo systemctl enable nginx
-              sudo chown www-data:www-data /var/www/html/index.html
-              sudo chmod 644 /var/www/html/index.html
-
               EOF
+
+  # Use the provisioner to update the landing page during pipeline runs
+  provisioner "file" {
+    source      = "index.html"
+    destination = "/var/www/html/index.html"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo chown www-data:www-data /var/www/html/index.html",
+      "sudo chmod 644 /var/www/html/index.html",
+      "sudo systemctl restart nginx"
+    ]
+  }
 
   # Tags for better identification
   tags = {
@@ -111,7 +81,6 @@ resource "aws_instance" "web_server" {
 # Elastic IP for the EC2 instance
 resource "aws_eip" "web_server_eip" {
   instance = aws_instance.web_server.id
-
 
   tags = {
     Name = "web-server-eip"
