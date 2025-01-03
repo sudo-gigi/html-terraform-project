@@ -69,7 +69,7 @@ resource "aws_instance" "web_server" {
                           font-family: Arial, sans-serif;
                           text-align: center;
                           padding: 50px;
-                          background: linear-gradient(to right, #d291bc, #957dad);
+                          background: linear-gradient(to right,rgb(242, 240, 241), #957dad);
                           color: #ffffff;
                       }
                       h1 {
@@ -91,7 +91,7 @@ resource "aws_instance" "web_server" {
                   <h1>Hi, I'm Glory Eziani 👩‍💻</h1>
                   <p>Welcome to my landing page powered by Terraform, AWS CodePipeline, and EC2 🚀</p>
                   <p>I'm passionate about Cloud Computing and DevOps 🌥️.</p>
-                  <p class="witty-text">Detect any changes? Yup, you guessed right! 🚨</p>
+                  <p class="witty-text">First Run !!</p>
               </body>
               </html>
               HTML
