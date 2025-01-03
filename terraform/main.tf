@@ -31,15 +31,15 @@ resource "aws_security_group" "web_server_sg" {
     cidr_blocks = ["0.0.0.0/0"] # Allows all outbound traffic
   }
 }
-# resource "aws_dynamodb_table" "terraform_lock" {
- # name         = "terraform-gg"
- # hash_key     = "LockID"
- # billing_mode = "PAY_PER_REQUEST"
-  # attribute {
-  #   name = "LockID"
-  #   type = "S"
-#   }
-# }
+resource "aws_dynamodb_table" "terraform_lock" {
+  name         = "terraform-gg"
+  hash_key     = "LockID"
+  billing_mode = "PAY_PER_REQUEST"
+  attribute {
+     name = "LockID"
+     type = "S"
+   }
+}
 
 # Resource to create an EC2 instance
 resource "aws_instance" "web_server" {
