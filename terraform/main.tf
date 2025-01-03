@@ -71,20 +71,20 @@ resource "aws_instance" "web_server" {
                           padding: 50px;
                           background: linear-gradient(to right, #d291bc, #957dad);
                           color: #ffffff;
-                      }
+                       }
                       h1 {
                           font-size: 2.5rem;
-                      }
+                       }
                       p {
                           font-size: 1.2rem;
-                      }
+                       }
                       .witty-text {
                           margin-top: 30px;
                           font-style: italic;
                           font-weight: bold;
                           color: #ffffff;
                           text-shadow: 1px 1px 2px #000000;
-                      }
+                       }
                   </style>
               </head>
               <body>
